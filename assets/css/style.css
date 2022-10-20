@@ -1,0 +1,13 @@
+*{
+
+}
+.header {
+    flex: auto;
+    text-align: center;
+    background-color: rgb(47, 15, 187);
+    color: white
+}
+
+button {
+    flex:auto;
+}
