@@ -1,13 +1,68 @@
 *{
-
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.header {
+
+body {
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none;
+}
+
+.center {
     flex: auto;
     text-align: center;
-    background-color: rgb(47, 15, 187);
-    color: white
+    background-color: #dad9eb;
+    background: linear-gradient(90deg, rgb(126, 82, 197), #0312e7);
+    color: white;
+    margin: auto;
+    padding: 15px 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-button {
-    flex:auto;
+.button {
+    background-color: #190452;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.button:hover {
+    background-color: #1607f1; 
+    color: rgb(245, 9, 9);
+}
+
+#current-wheather #conditions img {
+    display: block;
+}
+
+#search input {
+    width: 100%;
+}
+
+#search button {
+    width: 100%;
+}
+
+@media only screen and (max-width: 530px) {
+    /* Reducing h1 text size for mobile screens */
+    .header .center {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    /* Shifts icons in h1 onto own lines */
+    .header .center i {
+        display: block;
+        line-height: 1.25;
+    }
 }
