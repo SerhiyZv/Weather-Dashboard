@@ -65,16 +65,52 @@ const updateLocalStorage = (city) => {
 }
 
 const callOpenWeather = (city) => {
-    const apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=ca3339aa147dcdad470993efa11f2132";
-    const apiUrlFuture =  "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ca3339aa147dcdad470993efa11f2132";
+    const apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=ca3339aa147dcdad470993efa11f2132";
+    const apiUrlFuture =  "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=ca3339aa147dcdad470993efa11f2132";
     fetch(apiUrlCurrent)
     .then(function (response) {
         if(response.ok) {
-            response.json().then(function(data) {
+            response.json().then(function (data) {
                 console.log(data);
+
+                let uvIndex = "";
+
+                const oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&exclude=minutely,hourly,daily,alerts&units=imperial&appid=0656324568a33303c80afd015f0c27f8"
+
+                fetch(oneCallUrl)
+                .then(function (response) {
+                    if (response.ok) {
+                        response.json().then(function (data) {
+                            uvIndex = data;
+                        })
+                    }
+                })
+
+                console.log(uvIndex);
+
+                const icon = ("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png'>");
+                currentConditionsH3.innerHTML = data.name + " (" + moment().format("MM/DD/YYY") + ")" + icon;
+                const liArray = [];
+
+                currentConditionsUl.innerHTML = "";
+
+                for (let i =0; i <4; i++) {
+                    liArray.push(document.createElement("li"));
+                }
+
+                liArray[0].innerHTML = "Temperature: " + data.main.temp + " &deg;F";
+                liArray[1].textContent = "Humidity: " + data.main.humidity + "%";
+                liArray[2].textContent = "Wind Speed: " + data.wind.speed + " MPH";
+                liArray[3].textContent = "UV Index: " + uvIndex;
+
+                liArray.forEach(li => {
+                    currentConditionsUl.append(li);
+                })
+
                 updateLocalStorage(data.name);
             })
         }else {
+            currentConditionsUl.innerHTML = "";
             currentConditionsH3.textContent = "Try again!";
             const errorText = document.createElement("li");
             errorText.textContent = "City not found.";
@@ -90,5 +126,22 @@ const callOpenWeather = (city) => {
         }
     })
 }
+
+searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    searchValue = cityNameInput.value.trim("");
+    if (searchValue === "") {
+        currentConditionsH3.textContent = "Please enter a city!";
+    }else {
+        callOpenWeather(searchValue);
+        cityNameInput.value = "";
+    }
+});
+
+updateSearchHistory();
+
+//Default city to display
+callOpenWeather("Toronto");
 
 
