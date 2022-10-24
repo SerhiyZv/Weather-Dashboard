@@ -44,11 +44,11 @@ body {
     display: block;
 }
 
-#search input {
+#search-form input {
     width: 100%;
 }
 
-#search button {
+#search-form button {
     width: 100%;
 }
 
