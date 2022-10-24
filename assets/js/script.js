@@ -1,7 +1,7 @@
-var APIKey = "ca3339aa147dcdad470993efa11f2132"; // default key
-var city;
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-const citySearchInput = document.querySelector("#city-name");
+// var APIKey = "ca3339aa147dcdad470993efa11f2132"; // default key
+// var city;
+// var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+const cityNameInput = document.querySelector("#city-name");
 const searchForm = document.querySelector("#search-form");
 const currentConditionsUl = document.querySelector("#current-weather #conditions");
 const currentConditionsH3 = document.querySelector("#current-weather h3")
@@ -62,6 +62,33 @@ const updateLocalStorage = (city) => {
 
         updateSearchHistory();
     }
+}
+
+const callOpenWeather = (city) => {
+    const apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=ca3339aa147dcdad470993efa11f2132";
+    const apiUrlFuture =  "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ca3339aa147dcdad470993efa11f2132";
+    fetch(apiUrlCurrent)
+    .then(function (response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                console.log(data);
+                updateLocalStorage(data.name);
+            })
+        }else {
+            currentConditionsH3.textContent = "Try again!";
+            const errorText = document.createElement("li");
+            errorText.textContent = "City not found.";
+            currentConditionsUl.appendChild(errorText);
+        }
+    })
+    fetch(apiUrlFuture)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+            })
+        }
+    })
 }
 
 
