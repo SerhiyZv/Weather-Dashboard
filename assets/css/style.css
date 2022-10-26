@@ -52,6 +52,15 @@ body {
     width: 100%;
 }
 
+#daily-forecast #conditions img {
+    display: block;
+}
+
+#search-form input {
+    width: 100%;
+}
+
+
 @media only screen and (max-width: 530px) {
     /* Reducing h1 text size for mobile screens */
     .header .center {
