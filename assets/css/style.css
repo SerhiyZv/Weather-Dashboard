@@ -1,3 +1,4 @@
+/* Base styles for document */
 *{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -5,10 +6,16 @@
 body {
     line-height: 1.5;
 }
-
+/* Toggle class for script.js */
 .hidden {
     display: none;
 }
+
+/* Removes pointer for UV Index button display */
+.uv {
+    cursor: initial !important;
+}
+
 
 .center {
     flex: auto;
@@ -52,10 +59,12 @@ body {
     width: 100%;
 }
 
+/* Centers weather icons in 5-day cards */
 #daily-forecast #conditions img {
     display: block;
 }
 
+/* Ensures input block stays centered within card */
 #search-form input {
     width: 100%;
 }

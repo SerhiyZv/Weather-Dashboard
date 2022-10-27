@@ -1,6 +1,3 @@
-// var APIKey = "0656324568a33303c80afd015f0c27f8"; // second key
-// var city;
-// var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 // Variables Declaration
 const cityNameInput = document.querySelector("#city-name");
