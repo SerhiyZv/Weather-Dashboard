@@ -218,6 +218,6 @@ searchForm.addEventListener("submit", (event) => {
 updateSearchHistory();
 
 //Default city to display
-callOpenWeather("Toronto");
+callOpenWeather("Mississauga");
 
 
