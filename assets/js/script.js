@@ -130,7 +130,7 @@ const callOpenWeather = (city) => {
                 //Display weather data for current date
                 liArray[0].innerHTML = "Temperature: " + Math.floor(data.current.temp) + " &deg;C" ;
                 liArray[1].textContent = "Humidity: " + data.current.humidity + "%";
-                liArray[2].textContent = "Wind Speed: " + Math.floor(data.current.wind_speed) + " MPH";
+                liArray[2].textContent = "Wind Speed: " + Math.floor(data.current.wind_speed) + " MPS";
                 
                 const uvi = Math.floor(data.current.uvi);
 
@@ -163,9 +163,10 @@ const callOpenWeather = (city) => {
                     dailyCard.innerHTML = `
                     <div class="p-2 m-2 card bg-primary text-white">
                         <h5>${moment().add(i + 1, "days").format("MM/DD/YYYY")}</h5>
-                        <ul id="conditions">
+                        <ul>
                             <li><img src='https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png' alt="Weather icon" class="mx-auto"></li>
                             <li>Temp: ${Math.floor(data.daily[i].temp.day)} &deg;C</li>
+                            <li>Wind: ${data.daily[i].wind_speed}MPS</li>
                             <li>Humidity: ${data.daily[i].humidity}%</li>
                         </ul>
                     </div>`;

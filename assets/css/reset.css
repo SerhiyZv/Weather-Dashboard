@@ -5,8 +5,23 @@
 box-sizing: border-box;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+  }
+
 /* Remove default margin */
-body,
+body {
+    min-height: 100%;
+    line-height: 1;
+    font-family: sans-serif;
+  }
+
 h1,
 h2,
 h3,
@@ -51,11 +66,19 @@ picture {
 
 /* Inherit fonts for inputs and buttons */
 input,
+select,
+option,
+optgroup,
 button,
+pre,
 textarea,
 select {
     font: inherit;
 }
+code {
+    font-size: 100%;
+    font-family: inherit;
+  }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
@@ -71,4 +94,9 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
     }
+}
+
+ol,
+ul {
+  list-style: none;
 }
